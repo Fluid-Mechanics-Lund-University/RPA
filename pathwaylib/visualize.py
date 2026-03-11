@@ -335,7 +335,7 @@ def createDiag(
             label_lines.append(f"{entry_hrr_pct:+.1f}J / {flux_pct:.1f}mol")
 
         # 若 entryThres 过滤掉了部分反应，显示剩余百分比提示
-        hidden_pct = (total_flux - shown_flux) / total_flux * 100
+        hidden_pct = (total_flux - shown_flux) / MaxStrength * 100 if MaxStrength > 0 else 0.0
         if hidden_pct > 0.5:   # 忽略舍入噪声
             label_lines.append(f"(+other {hidden_pct:.0f} mol)")
         edge_label = "\n".join(label_lines)
